@@ -1,0 +1,17 @@
+# Config options: https://graphql-code-generator.com/docs/getting-started/codegen-config
+
+schema: # Add URL to load GraphQL schema
+documents: src/**/*.graphql
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  ./src/app/graphql/generated/index.ts:
+    plugins:
+      - add:
+          content:
+            - '// THIS IS A GENERATED FILE - DO NOT MODIFY'
+            - '/* tslint:disable */'
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular
